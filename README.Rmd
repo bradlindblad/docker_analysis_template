@@ -13,23 +13,30 @@ knitr::opts_chunk$set(
 
 # docker_analysis_template
 
+A template to perform a simple analysis with docker and R.
+
 <!-- badges: start -->
+[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <!-- badges: end -->
 
-The goal of docker_analysis_template is to ...
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
+## Installation
+```
+git clone https://github.com/bradlindblad/docker_analysis_template
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
+## Usage
 
-You can also embed plots, for example:
+First we need to create a local docker image. Make sure you are in the correct working directory.
 
-```{r pressure, echo = FALSE}
-plot(pressure)
+``` 
+docker build -t yourtag .
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
+Then run the container and your analysis
+
+```
+docker run -v /results:/home/results analysis
+```
+
+Your results file will be placed in /results.
